@@ -13,6 +13,17 @@ Step 1: Shopping cart
 ● Make reasonable assumptions about the inputs to your solution; for example, many candidates take a list of strings as input
 
 
+Step 2: Simple offers
+
+● The shop decides to introduce two new offers
+
+	○ buy one, get one free on Apples
+	
+	○ 3 for the price of 2 on Oranges
+	
+● Update your checkout functions accordingly
+
+
 Instructions to Use This application:
 
 I have used the following technologies to develop this application:
@@ -29,10 +40,11 @@ e) Maven
 
 f) SBT
 
-Please run "uk.gov.hmrc.shoppingcart.ShoppingCartITest" functional tests to verify the ShoppingCart functionality.
+Please run "uk.gov.hmrc.shoppingcart.ShoppingCartITest" and "uk.gov.hmrc.shoppingcart.OffersITest" functional tests to verify the ShoppingCart functionality.
 
 $ sbt test
 
 or 
 
 $ sbt "test-only uk.gov.hmrc.shoppingcart.ShoppingCartITest"
+$ sbt "test-only uk.gov.hmrc.shoppingcart.OffersITest"

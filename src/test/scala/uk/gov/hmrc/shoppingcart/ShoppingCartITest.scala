@@ -53,4 +53,36 @@ class ShoppingCartITest extends Specification {
     ShoppingCart.checkout(Array("Apple", "Apple", "Orange", "Apple")) must be equalTo 2.05
   }
 
+  "On 'Buy One Get One' Offer: When one Apple cost is 0.60, then checkout should show 2 Apples cost: 0.60" in {
+    ShoppingCart.checkoutWithOffers(Array("apple", "apple")) must be equalTo 0.60
+  }
+
+  "On 'Buy One Get One' Offer: When one Apple cost is 0.60, then checkout should show 3 Apples cost: 1.20" in {
+    ShoppingCart.checkoutWithOffers(Array("apple", "apple", "apple")) must be equalTo 1.20
+  }
+
+  "On 'Three For Two' Offer: When one Orange cost is 0.25, then checkout should show 3 Oranges cost: 0.50" in {
+    ShoppingCart.checkoutWithOffers(Array("orange", "orange", "orange")) must be equalTo 0.50
+  }
+
+  "On 'Three For Two' Offer: When one Orange cost is 0.25, then checkout should show 4 Oranges cost: 0.75" in {
+    ShoppingCart.checkoutWithOffers(Array("orange", "orange", "orange", "orange")) must be equalTo 0.75
+  }
+
+  """ On 'Buy One Get One' and 'Three For Two' Offers: When one Apple cost is 0.60 and one Orange cost is 0.25
+      then checkout should show 2 Apples cost: 0.60 and 3 Oranges cost: 0.50
+      Total price: 1.10 """ in {
+    ShoppingCart.checkoutWithOffers(Array("apple", "apple")) must be equalTo 0.60
+    ShoppingCart.checkoutWithOffers(Array("orange", "orange", "orange")) must be equalTo 0.50
+    ShoppingCart.checkoutWithOffers(Array("apple", "orange", "orange", "apple", "orange")) must be equalTo 1.10
+  }
+
+  """ On 'Buy One Get One' and 'Three For Two' Offers: When one Apple cost is 0.60 and one Orange cost is 0.25
+      then checkout should show 3 Apples cost: 1.20 and 4 Oranges cost: 0.75
+      Total price: 1.95 """ in {
+    ShoppingCart.checkoutWithOffers(Array("apple", "apple", "apple")) must be equalTo 1.20
+    ShoppingCart.checkoutWithOffers(Array("orange", "orange", "orange", "orange")) must be equalTo 0.75
+    ShoppingCart.checkoutWithOffers(Array("apple", "orange", "orange", "apple", "apple", "orange", "orange")) must be equalTo 1.95
+  }
+
 }
